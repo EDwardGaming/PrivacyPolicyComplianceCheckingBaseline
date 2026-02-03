@@ -1,0 +1,338 @@
+```
+(E:\Program Files\VENU\faiss_gpu_env) PS E:\desktop\合规检测大综述实验目录\5.1.1 privacy politice> python .\GdprComplianceExperiment.py
+============================================================
+GDPR Article 13 隐私政策合规性分析实验 (修复版 + 豆包API)
+============================================================
+加载数据: ./dataset/data.tsv
+数据集大小: 36610
+
+标签分布:
+  0 (Other): 30699
+  1 (Collect Personal Information (CPI)): 1542
+  2 (Data Retention Period (DRP)): 448
+  3 (Data Processing Purposes (DPP)): 1839
+  2 (Data Retention Period (DRP)): 448
+  3 (Data Processing Purposes (DPP)): 1839
+  3 (Data Processing Purposes (DPP)): 1839
+  4 (Contact Details (CD)): 721
+  5 (Right to Access (RA)): 115
+  6 (Right to Rectify or Erase (RRE)): 562
+  7 (Right to Restrict of Processing (RRP)): 127
+  8 (Right to Object to Processing (ROP)): 245
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+  5 (Right to Access (RA)): 115
+  6 (Right to Rectify or Erase (RRE)): 562
+  7 (Right to Restrict of Processing (RRP)): 127
+  8 (Right to Object to Processing (ROP)): 245
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+  7 (Right to Restrict of Processing (RRP)): 127
+  8 (Right to Object to Processing (ROP)): 245
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+  8 (Right to Object to Processing (ROP)): 245
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+
+类别权重:
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+
+类别权重:
+  Other: 0.1248
+  Collect Personal Information (CPI): 0.5386
+  Data Retention Period (DRP): 1.2476
+  Data Processing Purposes (DPP): 0.4516
+文件数量: 302
+
+类别权重:
+  Other: 0.1248
+  Collect Personal Information (CPI): 0.5386
+  Data Retention Period (DRP): 1.2476
+  Data Processing Purposes (DPP): 0.4516
+  Contact Details (CD): 1.1518
+
+类别权重:
+  Other: 0.1248
+  Collect Personal Information (CPI): 0.5386
+  Data Retention Period (DRP): 1.2476
+  Data Processing Purposes (DPP): 0.4516
+  Contact Details (CD): 1.1518
+  Other: 0.1248
+  Collect Personal Information (CPI): 0.5386
+  Data Retention Period (DRP): 1.2476
+  Data Processing Purposes (DPP): 0.4516
+  Contact Details (CD): 1.1518
+  Right to Access (RA): 1.2476
+  Right to Rectify or Erase (RRE): 1.2476
+  Right to Restrict of Processing (RRP): 1.2476
+  Contact Details (CD): 1.1518
+  Right to Access (RA): 1.2476
+  Right to Rectify or Erase (RRE): 1.2476
+  Right to Restrict of Processing (RRP): 1.2476
+  Right to Access (RA): 1.2476
+  Right to Rectify or Erase (RRE): 1.2476
+  Right to Restrict of Processing (RRP): 1.2476
+  Right to Restrict of Processing (RRP): 1.2476
+  Right to Object to Processing (ROP): 1.2476
+  Right to Data Portability (RDP): 1.2476
+  Right to Lodge a Complaint (RLC): 1.2476
+
+数据划分:
+  训练集: 25627
+  验证集: 3661
+  测试集: 7322
+
+============================================================
+使用 gpt-4o (Batch Size=20) 进行预测...
+============================================================
+开始 gpt-4o 405B 批处理预测 (Batch Size: 20)...
+Batch Processing: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 367/367 [29:24<00:00,  4.81s/it] 
+预测完成。成功获取 7322 个标签。
+
+============================================================
+sk-gHStitECWPl6A8GS977a80EdE8Fe4227B4E44338F18aE346 评估结果
+============================================================
+                                Label Precision Recall F1-Score  Support
+                                Other    0.9812 0.5526   0.7070     6140
+   Collect Personal Information (CPI)    0.2146 0.8604   0.3435      308
+          Data Retention Period (DRP)    0.3886 0.9111   0.5449       90
+       Data Processing Purposes (DPP)    0.2370 0.8424   0.3699      368
+                 Contact Details (CD)    0.4535 0.8125   0.5821      144
+                 Right to Access (RA)    0.1606 0.9565   0.2750       23
+      Right to Rectify or Erase (RRE)    0.3619 0.8230   0.5027      113
+Right to Restrict of Processing (RRP)    0.2857 0.8800   0.4314       25
+  Right to Object to Processing (ROP)    0.1393 0.7959   0.2371       49
+      Right to Data Portability (RDP)    0.6757 0.7576   0.7143       33
+     Right to Lodge a Complaint (RLC)    0.4531 1.0000   0.6237       29
+
+============================================================
+10个GDPR标签的平均指标:
+Precision: 0.3370
+Recall: 0.8639
+F1-Score: 0.4624
+============================================================
+
+
+============================================================
+合规性检测评估
+============================================================
+
+============================================================
+合规性检测评估
+============================================================
+
+总共 301 个隐私政策文档
+
+合规性统计:
+  真实违规总数: 1070
+  预测违规总数: 1527
+  正确检测 (TP): 774
+  误报 (FP): 753
+  漏检 (FN): 296
+
+合规性检测性能:
+  Precision: 0.5069
+  Recall: 0.7234
+  F1-Score: 0.5961
+
+部分文档违规详情 (前20个):
+                        filename  true_violations  pred_violations  correct  false_alarm  missed
+                  www.mondly.com                0                6        0            6       0
+        pages.geneticstudios.com                8                7        7            0       1
+xiaoming-user-policy.appspot.com                0                6        0            6       0
+                        im30.net                9                7        7            0       2
+                    www.cmcm.com                4                1        1            0       3
+                    mobirate.com                0                6        0            6       0
+        www.fungames-forfree.com                0                5        0            5       0
+   d1e1zkmrelw7ap.cloudfront.net                0                7        0            7       0
+               www.chelseafc.com                8                6        6            0       2
+                    sorakomi.com                9                8        8            0       1
+                www.duolingo.com                6                3        3            0       3
+                      www.any.do                0                3        0            3       0
+                   tid.toast.com                8                5        5            0       3
+                  www.google.com                6                2        2            0       4
+                      reality.co                0                7        0            7       0
+                     getmimo.com                0                5        0            5       0
+             www.mobisystems.com                0                4        0            4       0
+                privacy.uber.com                0                2        0            2       0
+                 belka-games.com                9                7        7            0       2
+                gamesunisoft.com                8                5        5            0       3
+
+============================================================
+
+
+============================================================
+实验总结
+============================================================
+
+分类性能 (10个GDPR标签平均):
+Model           Precision    Recall       F1-Score
+---------------------------------------------------
+gpt-4o          0.3370       0.8639       0.4624
+
+合规性检测性能 (所有模型):
+Model           Precision    Recall       F1-Score
+---------------------------------------------------
+gpt-4o          0.5069       0.7234       0.5961
+
+============================================================
+实验完成！
+============================================================
+```
+
+
+
+```
+(E:\Program Files\VENU\faiss_gpu_env) PS E:\desktop\合规检测大综述实验目录\5.1.1 privacy politice> python .\GdprComplianceExperiment.py
+============================================================
+GDPR Article 13 隐私政策合规性分析实验 (修复版 + 豆包API)
+============================================================
+加载数据: ./dataset/data.tsv
+数据集大小: 36610
+
+标签分布:
+  0 (Other): 30699
+  1 (Collect Personal Information (CPI)): 1542
+  2 (Data Retention Period (DRP)): 448
+  3 (Data Processing Purposes (DPP)): 1839
+  4 (Contact Details (CD)): 721
+  5 (Right to Access (RA)): 115
+  6 (Right to Rectify or Erase (RRE)): 562
+  7 (Right to Restrict of Processing (RRP)): 127
+  8 (Right to Object to Processing (ROP)): 245
+  9 (Right to Data Portability (RDP)): 167
+  10 (Right to Lodge a Complaint (RLC)): 145
+
+文件数量: 302
+
+类别权重:
+  Other: 0.1248
+  Collect Personal Information (CPI): 0.5386
+  Data Retention Period (DRP): 1.2476
+  Data Processing Purposes (DPP): 0.4516
+  Contact Details (CD): 1.1518
+  Right to Access (RA): 1.2476
+  Right to Rectify or Erase (RRE): 1.2476
+  Right to Restrict of Processing (RRP): 1.2476
+  Right to Object to Processing (ROP): 1.2476
+  Right to Data Portability (RDP): 1.2476
+  Right to Lodge a Complaint (RLC): 1.2476
+
+数据划分:
+  训练集: 25627
+  验证集: 3661
+  测试集: 7322
+
+============================================================
+使用 gpt-4o (Batch Size=10) 进行预测...
+============================================================
+开始 gpt-4o 405B 批处理预测 (Batch Size: 10)...
+Batch Processing: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 733/733 [54:31<00:00,  4.46s/it] 
+预测完成。成功获取 7322 个标签。
+
+============================================================
+sk-gHStitECWPl6A8GS977a80EdE8Fe4227B4E44338F18aE346 评估结果
+============================================================
+                                Label Precision Recall F1-Score  Support
+                                Other    0.9810 0.5891   0.7361     6140
+   Collect Personal Information (CPI)    0.2304 0.8506   0.3626      308
+          Data Retention Period (DRP)    0.4100 0.9111   0.5655       90
+       Data Processing Purposes (DPP)    0.2472 0.8424   0.3822      368
+                 Contact Details (CD)    0.4566 0.8403   0.5917      144
+                 Right to Access (RA)    0.1774 0.9565   0.2993       23
+      Right to Rectify or Erase (RRE)    0.3926 0.8407   0.5352      113
+Right to Restrict of Processing (RRP)    0.2738 0.9200   0.4220       25
+  Right to Object to Processing (ROP)    0.1645 0.7755   0.2714       49
+      Right to Data Portability (RDP)    0.6757 0.7576   0.7143       33
+     Right to Lodge a Complaint (RLC)    0.4590 0.9655   0.6222       29
+
+============================================================
+10个GDPR标签的平均指标:
+Precision: 0.3487
+Recall: 0.8660
+F1-Score: 0.4767
+============================================================
+
+
+============================================================
+合规性检测评估
+============================================================
+
+============================================================
+合规性检测评估
+============================================================
+
+总共 301 个隐私政策文档
+
+合规性统计:
+  真实违规总数: 1070
+  预测违规总数: 1529
+  正确检测 (TP): 782
+  误报 (FP): 747
+  漏检 (FN): 288
+
+合规性检测性能:
+  Precision: 0.5114
+  Recall: 0.7308
+  F1-Score: 0.6018
+
+部分文档违规详情 (前20个):
+                        filename  true_violations  pred_violations  correct  false_alarm  missed
+                  www.mondly.com                0                7        0            7       0
+        pages.geneticstudios.com                8                7        7            0       1
+xiaoming-user-policy.appspot.com                0                7        0            7       0
+                        im30.net                9                7        7            0       2
+                    www.cmcm.com                4                1        1            0       3
+                    mobirate.com                0                6        0            6       0
+        www.fungames-forfree.com                0                4        0            4       0
+   d1e1zkmrelw7ap.cloudfront.net                0                7        0            7       0
+               www.chelseafc.com                8                6        6            0       2
+                    sorakomi.com                9                8        8            0       1
+                www.duolingo.com                6                3        3            0       3
+                      www.any.do                0                3        0            3       0
+                   tid.toast.com                8                6        6            0       2
+                  www.google.com                6                2        2            0       4
+                      reality.co                0                7        0            7       0
+                     getmimo.com                0                5        0            5       0
+             www.mobisystems.com                0                5        0            5       0
+                privacy.uber.com                0                2        0            2       0
+                 belka-games.com                9                7        7            0       2
+                gamesunisoft.com                8                5        5            0       3
+
+============================================================
+
+
+============================================================
+实验总结
+============================================================
+
+分类性能 (10个GDPR标签平均):
+Model           Precision    Recall       F1-Score
+---------------------------------------------------
+gpt-4o          0.3487       0.8660       0.4767
+
+合规性检测性能 (所有模型):
+Model           Precision    Recall       F1-Score
+---------------------------------------------------
+gpt-4o          0.5114       0.7308       0.6018
+
+============================================================
+实验完成！
+============================================================
+```
+

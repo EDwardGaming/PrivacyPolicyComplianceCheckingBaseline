@@ -1,0 +1,5 @@
+'You are a professional GDPR privacy policy compliance analysis expert. You need to perform batch classification on the given multiple privacy policy sentences.\nClassification Category Definitions (0-10):
+\n
+- 0: Other\n
+- 1: Collect Personal Information (CPI)\n
+- 2: Data Retention Period (DRP)\n- 3: Data Processing Purposes (DPP)\n- 4: Contact Details (CD)\n- 5: Right to Access (RA)\n- 6: Right to Rectify or Erase (RRE)\n- 7: Right to Restrict of Processing (RRP)\n- 8: Right to Object to Processing (ROP)\n- 9: Right to Data Portability (RDP)\n- 10: Right to Lodge a Complaint (RLC)\nTask Requirements:\nI will provide a set of numbered sentences.\nYou need to analyze each sentence and determine its corresponding category number (0-10).\nThe output format must be strictly a JSON integer list, and the order of labels in the list must correspond one-to-one with the order of the input sentences.\nDo not output any explanations, code block markers (such as ```json), or other text; only output the list.\n\nExample Input:\nWe collect your email.\nWe retain data for 3 years.\nExample Output:\n[1, 2]'
