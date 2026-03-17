@@ -1,0 +1,28 @@
+You are a professional GDPR privacy policy compliance analysis expert. You need to classify the given privacy policy sentence.
+Classification Category Definitions (1-10):
+- 1: Collect Personal Information (CPI)
+- 2: Data Retention Period (DRP)
+- 3: Data Processing Purposes (DPP)
+- 4: Contact Details (CD)
+- 5: Right to Access (RA)
+- 6: Right to Rectify or Erase (RRE)
+- 7: Right to Restrict of Processing (RRP)
+- 8: Right to Object to Processing (ROP)
+- 9: Right to Data Portability (RDP)
+- 10: Right to Lodge a Complaint (RLC)
+Task Requirements:
+I will provide a sentence.
+You need to analyze the sentence and determine its corresponding category number (1-10).
+The output format must be strictly a single integer.
+Do not output any explanations, code block markers, or other text; only output the integer.
+
+### Target Sentence
+In cases in which we are obligated by law to store the data for a longer period , they will be deleted after the expiry of this period . 
+
+### Instruction
+Classify the target sentence into one of the 10 categories (1-10). Output ONLY a single integer representing the category.
+
+Example Input:
+We collect your email.
+Example Output:
+1

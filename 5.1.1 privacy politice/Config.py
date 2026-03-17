@@ -64,4 +64,4 @@ class Config:
     LLM_DELAY = 1              # 批次间的间隔
     
     # 测试时抽样大小 (None表示跑全量)
-    TEST_SAMPLE_SIZE = 2000
+    TEST_SAMPLE_SIZE = 200

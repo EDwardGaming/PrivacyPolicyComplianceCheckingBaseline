@@ -1,0 +1,50 @@
+You are a professional GDPR privacy policy compliance analysis expert. You need to classify the given privacy policy sentence.
+Classification Category Definitions (0-10):
+- 0: Other
+- 1: Collect Personal Information (CPI)
+- 2: Data Retention Period (DRP)
+- 3: Data Processing Purposes (DPP)
+- 4: Contact Details (CD)
+- 5: Right to Access (RA)
+- 6: Right to Rectify or Erase (RRE)
+- 7: Right to Restrict of Processing (RRP)
+- 8: Right to Object to Processing (ROP)
+- 9: Right to Data Portability (RDP)
+- 10: Right to Lodge a Complaint (RLC)
+Task Requirements:
+I will provide a sentence.
+You need to analyze the sentence and determine its corresponding category number (0-10).
+The output format must be strictly a single integer.
+Do not output any explanations, code block markers, or other text; only output the integer.
+
+The information that assists you in making your judgment consists of the following three parts: Part 1: Document Summary, Part 2: Context Information (Retrieved), and Part 3: Target Sentence.
+
+
+### Part 1: Document Summary
+The service collects personal data you actively provide (account registration, profile content, chats, support inquiries) and data gathered automatically when using the site (IP address and timestamp, cookies/local storage/pixels, Google Analytics, retargeting identifiers, Sentry error logs). Payment data (name, address) for coin purchases is handled by PayPal; the service receives only what’s needed to complete transactions and prevent fraud. Location is inferred from IP to prefill your profile; precise location can be calculated via your browser with consent. Social logins via Google/Facebook may transfer your profile picture and Facebook Likes. Profiles and any special-category data you add (e.g., sexual orientation) are public to all visitors.
+
+Data is processed to operate and secure the site, manage accounts, enable matching and local suggestions, analyze usage, personalize content/ads, send newsletters (with opt-out), fulfill purchases, and prevent attacks/fraud. Legal bases include contract (Art. 6(1)(b)), legitimate interests (Art. 6(1)(f)), and consent (Art. 6(1)(a)); special-category data is processed only if you voluntarily provide it.
+
+Data may be shared with service providers (hosting, newsletter, PayPal, Google Maps/Analytics, advertising partners, Sentry). Retention: account data until deletion; chats until you delete; IP data depersonalized when no longer needed; purchase records retained per law then deleted/de-personalized.
+
+Your rights: access, rectification, erasure, restriction, portability, objection (including to direct marketing), and complaint to a supervisory authority. Exercise via the provided email/address.
+
+### Part 2: Context Information (Retrieved)
+Visiting our Website 
+As soon as you visit our website , the company we have entrusted with the websites operation will store the public IP address of the computer you are using to visit our website 
+This includes the access date and time 
+The IP address is a unique numeric address , through which your computer sends and receives data via the internet 
+Usually , neither we nor our service provider will know whom the IP address belongs to , unless you provide us with any data permitting us to identify you while using our website 
+Also , a user can be identified if we take legal action ( in cases of cyber-attacks on our website , for instance ) and are informed of the users identity during the process of investigation 
+So as a general rule , you will not have to worry we will be able to draw a connection between you and your IP address . 
+
+### Part 3: Target Sentence
+The IP address is a unique numeric address , through which your computer sends and receives data via the internet 
+
+### Instruction
+Based on the summary, context, and the target sentence, classify the target sentence into one of the 10 categories (0-10). Output ONLY a single integer representing the category.
+
+Example Input(Target Sentence in Part 3:):
+We collect your email.
+Example Output:
+1

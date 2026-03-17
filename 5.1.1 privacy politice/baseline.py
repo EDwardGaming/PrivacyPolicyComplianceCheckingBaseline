@@ -427,6 +427,9 @@ def compliance_detection_evaluation(y_true, y_pred, filenames):
     # 按filename分组
     file_data = {}
     for i, filename in enumerate(filenames):
+        # 检查索引是否超出范围
+        if i >= len(y_pred):
+            break
         if filename not in file_data:
             file_data[filename] = {
                 'true_labels': [],
@@ -536,14 +539,32 @@ def run_experiment():
         print(f"  {Config.LABEL_NAMES[i]}: {w:.4f}")
     
     # 划分数据集
-    X_temp, X_test, y_temp, y_test, files_temp, files_test = train_test_split(
-        X, y, filenames, test_size=Config.TEST_SIZE, random_state=Config.RANDOM_STATE, stratify=y
+    # [修复] 按文档划分数据集，确保同一文档的句子不被拆分，以支持上下文分析和合规性检测
+    unique_files = df['filename'].unique()
+    
+    # 1. 划分 训练+验证集 vs 测试集 (按文档)
+    train_val_files, test_files_unique = train_test_split(
+        unique_files, test_size=Config.TEST_SIZE, random_state=Config.RANDOM_STATE
     )
     
-    X_train, X_val, y_train, y_val, _, _ = train_test_split(
-        X_temp, y_temp, files_temp, test_size=Config.VAL_SIZE/(1-Config.TEST_SIZE), 
-        random_state=Config.RANDOM_STATE, stratify=y_temp
+    # 2. 划分 训练集 vs 验证集 (按文档)
+    train_files_unique, val_files_unique = train_test_split(
+        train_val_files, test_size=Config.VAL_SIZE/(1-Config.TEST_SIZE), 
+        random_state=Config.RANDOM_STATE
     )
+    
+    # 3. 根据文件名提取数据
+    def get_data_by_files(source_df, target_files):
+        mask = source_df['filename'].isin(target_files)
+        return (
+            source_df[mask]['sentence'].values, 
+            source_df[mask]['label'].values, 
+            source_df[mask]['filename'].values
+        )
+
+    X_train, y_train, files_train = get_data_by_files(df, train_files_unique)
+    X_val, y_val, files_val = get_data_by_files(df, val_files_unique)
+    X_test, y_test, files_test = get_data_by_files(df, test_files_unique)
     
     print(f"\n数据划分:")
     print(f"  训练集: {len(X_train)}")
@@ -553,7 +574,7 @@ def run_experiment():
     # 存储结果 - 同时保存分类性能和预测结果
     results = {}
     predictions = {}
-    '''
+    
     # ==================== SVM ====================
     print(f"\n{'='*60}")
     print("训练 SVM...")
@@ -603,8 +624,8 @@ def run_experiment():
     bert_lw_pred = bert_lw.predict(X_test)
     results['BERT+LW'] = evaluate_model(y_test, bert_lw_pred, "BERT+LW")
     predictions['BERT+LW'] = bert_lw_pred
-    '''
-    # ==================== Llama 405B Batch Prediction ====================
+    
+    # ==================== Llama Zero-Shot Prediction (KFC) ====================
     print(f"\n{'='*60}")
     print(f"使用 {Config.LLM_MODEL_ID} (Batch Size={Config.LLM_API_BATCH_SIZE}) 进行预测...")
     print(f"{'='*60}")
@@ -627,7 +648,8 @@ def run_experiment():
         
         results[llama_classifier.model_id] = evaluate_model(y_test_sample, llama_pred_sample, f'{Config.LLM_MODEL_ID}')
         predictions[llama_classifier.model_id] = llama_full_pred
-        sampled_indices_by_model = {f'{Config.LLM_API_KEY}': llama_sampled_idx}
+        sampled_indices_by_model = {llama_classifier.model_id: llama_sampled_idx}
+    
     
     # ==================== 合规性检测评估 ====================
     print(f"\n{'='*60}")
@@ -639,7 +661,13 @@ def run_experiment():
         if 'sampled_indices_by_model' in locals() and model_name in sampled_indices_by_model:
             idx = sampled_indices_by_model[model_name]
             y_true_eval = y_test[idx]
-            y_pred_eval = y_pred[idx]
+            
+            # [修复] 判断预测结果是全量还是抽样：如果长度不一致，说明 y_pred 已经是抽样后的结果，无需再次切片
+            if len(y_pred) == len(y_test):
+                y_pred_eval = y_pred[idx]
+            else:
+                y_pred_eval = y_pred
+            
             files_eval = files_test[idx]
         else:
             y_true_eval = y_test
@@ -679,4 +707,4 @@ if __name__ == "__main__":
         print("请确保data.tsv文件在dataset目录下")
         print("如果没有数据，请先下载数据集")
     else:
-        results, compliance_results = run_experiment()
+       results, compliance_results = run_experiment()
